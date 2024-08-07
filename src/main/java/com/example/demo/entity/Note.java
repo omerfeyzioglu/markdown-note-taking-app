@@ -33,4 +33,6 @@ public class Note {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToOne(mappedBy = "note", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private File file;   //it provides that relevant file depends entirely on note.
 }

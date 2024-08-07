@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,6 +30,7 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime created_at;
 
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Note> notes;         // orphanRemoval = true ==> the relevant note to be deleted when the relationship between a user and a note is terminated
 
 }

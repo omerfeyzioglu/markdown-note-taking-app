@@ -19,7 +19,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false, unique = true, length = 20)
-    private String user_name;
+    private String username;
 
     @Column(nullable = false, length = 255)
     private String password;
@@ -28,9 +28,14 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes;         // orphanRemoval = true ==> the relevant note to be deleted when the relationship between a user and a note is terminated
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
 }

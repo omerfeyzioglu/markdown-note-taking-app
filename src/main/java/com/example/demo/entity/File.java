@@ -21,11 +21,19 @@ public class File {
 
     //private String fileType;
     @Column(nullable = false, length = 255)
-    private String file_path;
+    private String filePath;
 
-    private LocalDateTime uploaded_at;
+    @Column(nullable = false)
+    private String fileType;
+
+    private LocalDateTime uploadedAt;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "note_id", nullable = false)
     private Note note;
+
+    @PrePersist
+    protected void onUpload() {
+        uploadedAt = LocalDateTime.now();
+    }
 }

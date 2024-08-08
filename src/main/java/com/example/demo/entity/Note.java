@@ -25,9 +25,9 @@ public class Note {
    @Column(nullable = false)
     private String content;
 
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -35,4 +35,15 @@ public class Note {
 
     @OneToOne(mappedBy = "note", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private File file;   //it provides that relevant file depends entirely on note.
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

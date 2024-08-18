@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,8 +22,8 @@ public class Note {
     @Column(nullable = false, length = 255)
     private String title;
 
-   @Lob
-   @Column(nullable = false)
+    @Lob
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
     private LocalDateTime createdAt;
@@ -31,6 +32,7 @@ public class Note {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference    //note does not show user in Json to avoid from infinity loop!
     private User user;
 
     @OneToOne(mappedBy = "note", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

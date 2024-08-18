@@ -26,9 +26,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    private final ModelMapper modelMapper;
+
+    /*private final ModelMapper modelMapper;
     private final Gson gson;
-    private final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;*/
 
 
     @PostMapping("")

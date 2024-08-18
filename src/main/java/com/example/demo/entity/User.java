@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +23,6 @@ public class User {
 
     @Column(name = "user_name",nullable = false, unique = true, length = 20)
     @Setter
-
     private String username;
 
     @Column( unique = true, length = 255)
@@ -31,8 +31,8 @@ public class User {
     @Column(nullable = false, name = "created_at")
     private LocalDateTime createdAt;
 
-//    @Column(nullable = true)
-//    private String password;
+    @Column(nullable = false)
+    private String password;
 
 //    @PrePersist
 //    protected void onCreate() {
@@ -41,6 +41,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Note> notes;         // orphanRemoval = true ==> the relevant note to be deleted when the relationship between a user and a note is terminated
 
 

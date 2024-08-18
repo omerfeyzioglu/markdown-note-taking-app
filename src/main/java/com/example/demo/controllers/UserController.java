@@ -30,7 +30,7 @@ public class UserController {
     private final Gson gson;
     private final ObjectMapper objectMapper;
 
-    
+
     @PostMapping("")
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO ) {
        userService.createUser(userDTO);

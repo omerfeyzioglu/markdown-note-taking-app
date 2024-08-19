@@ -21,6 +21,7 @@ public class FileService {
     private final FileRepository fileRepository;
     private final NoteService noteService;
     private final ModelMapper modelMapper;
+
     public FileDTO saveFile(MultipartFile multipartFile, String filePath, Long noteId) throws IOException {
         // Notu al
         Note note = noteService.getNoteById(noteId);
@@ -65,9 +66,10 @@ public class FileService {
         return ".txt".equals(extension) || ".docx".equals(extension);
     }
 
-    public File getFileById(Long id) {
-        return fileRepository.findById(id)
+    public FileDTO getFileById(Long id) {
+        File file = fileRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("File not found"));
+        return  modelMapper.map(file, FileDTO.class);
     }
 
     public void deleteFile(Long id) {

@@ -1,9 +1,11 @@
 package com.example.demo.services;
 
+import com.example.demo.dto.FileDTO;
 import com.example.demo.entity.File;
 import com.example.demo.entity.Note;
 import com.example.demo.repositories.FileRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,28 +19,38 @@ import java.nio.file.Paths;
 @RequiredArgsConstructor
 public class FileService {
     private final FileRepository fileRepository;
+    private final NoteService noteService;
+    private final ModelMapper modelMapper;
+    public FileDTO saveFile(MultipartFile multipartFile, String filePath, Long noteId) throws IOException {
+        // Notu al
+        Note note = noteService.getNoteById(noteId);
+        File file = getFile(multipartFile, filePath, note);
+        File savedFile = fileRepository.save(file);
+        return modelMapper.map(savedFile, FileDTO.class);
+    }
 
-    public File saveFile(String fileName, String filePath, Note note) throws IOException {
-
-        Path path = Paths.get(filePath);
-        if (!Files.exists(path) || !Files.isRegularFile(path)) {
-            throw new IllegalArgumentException("File path is not valid.");
-        }
-
-
-        String fileExtension = getFileExtension(fileName);
-        if (!isValidFileType(fileExtension)) {
-            throw new IllegalArgumentException("Invalid file type. Only .txt and .docx files are allowed.");
-        }
+    private File getFile(MultipartFile multipartFile, String filePath, Note note) {
+        // Dosya bilgilerini ayarla
+        String fileName = multipartFile.getOriginalFilename();
+        String fileType = determineFileType(fileName);
 
 
         File file = new File();
         file.setFileName(fileName);
-        file.setFilePath(filePath);
-        file.setUploadedAt(java.time.LocalDateTime.now());
+        file.setFilePath(filePath); // Burada dosyanın gerçek yolu kullanılabilir
+        file.setFileType(fileType);
         file.setNote(note);
+        return file;
+    }
 
-        return fileRepository.save(file);
+    private String determineFileType(String fileName) {
+        if (fileName.endsWith(".txt")) {
+            return "text/plain";
+        } else if (fileName.endsWith(".docx")) {
+            return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+        } else {
+            throw new IllegalArgumentException("Unsupported file type: " + fileName);
+        }
     }
 
     private String getFileExtension(String fileName) {

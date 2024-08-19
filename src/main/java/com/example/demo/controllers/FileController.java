@@ -29,22 +29,20 @@ public class FileController {
 
         return new ResponseEntity<>(fileDTO, HttpStatus.CREATED);
     }
-//    @GetMapping("/{id}")
-//    public ResponseEntity<FileDTO> getFileById(@PathVariable Long id) {
-//        File file = fileService.getFileById(id);
-//        FileDTO fileDTO = new FileDTO();
-//        fileDTO.setFileName(file.getFileName());
-//        fileDTO.setFilePath(file.getFilePath());
-//        return new ResponseEntity<>(fileDTO, HttpStatus.OK);
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<FileDTO> getFileById(@PathVariable Long id) {
+        FileDTO fileDTO = fileService.getFileById(id);
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<String> deleteFile(@PathVariable Long id) {
-//        try {
-//            fileService.deleteFile(id);
-//            return new ResponseEntity<>("File successfully deleted", HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>("File not found or could not be deleted", HttpStatus.NOT_FOUND);
-//        }
-//    }
+        return new ResponseEntity<>(fileDTO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteFile(@PathVariable Long id) {
+        try {
+            fileService.deleteFile(id);
+            return new ResponseEntity<>("File successfully deleted", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("File not found or could not be deleted", HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -5,6 +5,7 @@ import com.example.demo.dto.NoteDTO;
 import com.example.demo.dto.NoteResponseDTO;
 import com.example.demo.entity.Note;
 import com.example.demo.entity.User;
+import com.example.demo.services.MarkdownService;
 import com.example.demo.services.NoteService;
 import com.example.demo.services.UserService;
 import jakarta.transaction.Transactional;
@@ -23,6 +24,7 @@ import java.util.Optional;
 public class NoteController {
 
     private final NoteService noteService;
+    private final MarkdownService markdownService;
     private final UserService userService;
     private final ModelMapper modelMapper;
 
@@ -47,10 +49,21 @@ public class NoteController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteNote(@PathVariable Long id) {
 
-            String asd = noteService.deleteNote(id);
+            String deleted = noteService.deleteNote(id);
 
-           return new ResponseEntity<>(asd,HttpStatus.INTERNAL_SERVER_ERROR);
+           return new ResponseEntity<>(deleted,HttpStatus.INTERNAL_SERVER_ERROR);
 
 
     }
+
+    @GetMapping("/content/{id}")
+    public ResponseEntity<String> getNoteContentAsHtml(@PathVariable Long id) {
+        Note note = noteService.getNoteById(id);
+        String htmlContent = markdownService.convertMarkdownToHtml(note.getContent());
+        return ResponseEntity.ok(htmlContent);
+    }
+
+    //when you give a long input to json it will give syntax error and to avoid that  there must be '\n' at the end of every each row.
+    // String markdownContent = jsonObject.getString("content");
+    //markdownContent = markdownContent.replace("\\n", "\n").replace("\\\"", "\"");
 }

@@ -53,6 +53,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+            <version>0.22.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
             <version>3.2.1</version>

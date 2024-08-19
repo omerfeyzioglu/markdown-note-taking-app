@@ -23,7 +23,7 @@ public class FileService {
     private final ModelMapper modelMapper;
 
     public FileDTO saveFile(MultipartFile multipartFile, String filePath, Long noteId) throws IOException {
-        // Notu al
+
         Note note = noteService.getNoteById(noteId);
         File file = getFile(multipartFile, filePath, note);
         File savedFile = fileRepository.save(file);
@@ -31,14 +31,14 @@ public class FileService {
     }
 
     private File getFile(MultipartFile multipartFile, String filePath, Note note) {
-        // Dosya bilgilerini ayarla
+        //set file informations.
         String fileName = multipartFile.getOriginalFilename();
         String fileType = determineFileType(fileName);
 
 
         File file = new File();
         file.setFileName(fileName);
-        file.setFilePath(filePath); // Burada dosyanın gerçek yolu kullanılabilir
+        file.setFilePath(filePath);
         file.setFileType(fileType);
         file.setNote(note);
         return file;
@@ -51,20 +51,13 @@ public class FileService {
             return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
         } else {
             throw new IllegalArgumentException("Unsupported file type: " + fileName);
+
         }
     }
 
-    private String getFileExtension(String fileName) {
-        int lastIndexOfDot = fileName.lastIndexOf('.');
-        if (lastIndexOfDot == -1) {
-            return "";
-        }
-        return fileName.substring(lastIndexOfDot).toLowerCase();
-    }
 
-    private boolean isValidFileType(String extension) {
-        return ".txt".equals(extension) || ".docx".equals(extension);
-    }
+
+
 
     public FileDTO getFileById(Long id) {
         File file = fileRepository.findById(id)

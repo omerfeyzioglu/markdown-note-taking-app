@@ -25,9 +25,14 @@ public class FileController {
     public ResponseEntity<FileDTO> uploadFile(@RequestParam("file") MultipartFile multipartFile,
                                               @RequestParam("filePath") String filePath,
                                               @RequestParam("noteId") Long noteId) throws IOException {
-        FileDTO fileDTO = fileService.saveFile(multipartFile, filePath, noteId);
+     try {
+         FileDTO fileDTO = fileService.saveFile(multipartFile, filePath, noteId);
+         return new ResponseEntity<>(fileDTO, HttpStatus.CREATED);
+     }catch (Exception e){
+         return new ResponseEntity<>(null,HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+     }
 
-        return new ResponseEntity<>(fileDTO, HttpStatus.CREATED);
+
     }
     @GetMapping("/{id}")
     public ResponseEntity<FileDTO> getFileById(@PathVariable Long id) {

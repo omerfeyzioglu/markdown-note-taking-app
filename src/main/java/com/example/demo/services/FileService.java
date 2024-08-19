@@ -1,6 +1,8 @@
 package com.example.demo.services;
 
 import com.example.demo.dto.FileDTO;
+import com.example.demo.dto.NoteDTO;
+import com.example.demo.dto.NoteResponseDTO;
 import com.example.demo.entity.File;
 import com.example.demo.entity.Note;
 import com.example.demo.repositories.FileRepository;
@@ -27,6 +29,8 @@ public class FileService {
         Note note = noteService.getNoteById(noteId);
         File file = getFile(multipartFile, filePath, note);
         File savedFile = fileRepository.save(file);
+        String fileContent = readFileContent(savedFile);
+        addFileContentToNoteContent(noteId, fileContent);
         return modelMapper.map(savedFile, FileDTO.class);
     }
 
@@ -43,6 +47,18 @@ public class FileService {
         file.setNote(note);
         return file;
     }
+    public String readFileContent(File file) throws IOException {
+        Path path = Paths.get(file.getFilePath());
+        return Files.readString(path);
+    }
+    public NoteResponseDTO addFileContentToNoteContent(Long noteId, String fileContent) {
+        Note note = noteService.getNoteById(noteId);
+        String updatedContent = note.getContent() + "\n\n" + fileContent;
+        note.setContent(updatedContent);
+
+        return  noteService.createNote(modelMapper.map(note, NoteDTO.class));
+    }
+
 
     private String determineFileType(String fileName) {
         if (fileName.endsWith(".txt")) {

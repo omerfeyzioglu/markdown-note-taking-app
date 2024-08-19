@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +33,7 @@ public class File {
     private LocalDateTime uploadedAt;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name = "note_id", nullable = false)
     private Note note;
 

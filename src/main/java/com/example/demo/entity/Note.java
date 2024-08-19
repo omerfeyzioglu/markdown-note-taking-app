@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +37,7 @@ public class Note {
     private User user;
 
     @OneToOne(mappedBy = "note", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private File file;   //it provides that relevant file depends entirely on note.
 
     @PrePersist

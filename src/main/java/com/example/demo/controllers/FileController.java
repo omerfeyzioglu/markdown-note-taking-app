@@ -19,7 +19,7 @@ import java.io.IOException;
 public class FileController {
 
     private final FileService fileService;
-    private final NoteService noteService;
+
 
     @PostMapping
     public ResponseEntity<FileDTO> uploadFile(@RequestParam("file") MultipartFile multipartFile,

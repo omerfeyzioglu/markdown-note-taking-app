@@ -13,10 +13,15 @@ public class MarkdownService {
 
 
     public String convertMarkdownToHtml(String markdown) {
-        Parser parser = Parser.builder().build();
-        org.commonmark.node.Node document = parser.parse(markdown);
+        org.commonmark.node.Node document = getNode(markdown);
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         return renderer.render((org.commonmark.node.Node) document);
+    }
+
+    private static org.commonmark.node.Node getNode(String markdown) {
+        Parser parser = Parser.builder().build();
+        org.commonmark.node.Node document = parser.parse(markdown);
+        return document;
     }
 }
 

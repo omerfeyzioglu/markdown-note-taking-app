@@ -25,8 +25,7 @@ public class NoteController {
 
     private final NoteService noteService;
     private final MarkdownService markdownService;
-    private final UserService userService;
-    private final ModelMapper modelMapper;
+
 
     @PostMapping
     public ResponseEntity<NoteResponseDTO> addNote(@RequestBody NoteDTO noteDTO ) {

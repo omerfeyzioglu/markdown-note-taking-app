@@ -58,8 +58,6 @@ public class FileService {
 
         return  noteService.createNote(modelMapper.map(note, NoteDTO.class));
     }
-
-
     private String determineFileType(String fileName) {
         if (fileName.endsWith(".txt")) {
             return "text/plain";

@@ -61,7 +61,7 @@ Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmakt
 - **Method:** `POST`
 - **Açıklama:** Yeni bir kullanıcı oluşturur.
 
-- **Request Body:** `UserDTO`
+- **Request Body:** `<UserDTO>`
 
 - **Örnek İstek:**
   ```bash
@@ -91,7 +91,7 @@ Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmakt
 >- **Başarılı Yanıt:**
 >   
    >> + Status: `200 OK`
-   >> +  Body: `<ResponseUserDTO>`
+   >> +  Body: `<List<ResponseUserDTO>>`
    >> +   ```json
 >   >     [
 >   >      {
@@ -118,7 +118,7 @@ Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmakt
 >- **Başarılı Yanıt:**
 >   
    >> + Status: `200 OK`
-   >> +  Body: `ResponseUserDTO`
+   >> +  Body: `<ResponseUserDTO>`
    >> +   ```json
 >   >      {
 >   >     "username": "OmerF",
@@ -140,18 +140,56 @@ curl -X DELETE http://localhost:8080/user/1
 >- **Başarılı Yanıt:**
 >   
    >> + Status: `200 OK`
-   >> +  Body: `ResponseUserDTO`
+   >> +  Body: `<ResponseUserDTO>`
    >> +   ```json
 >   >     "User deleted!"
 
 >- **Hata Durumu (Kullanıcı Bulunamadı)**
 >
-   >> + Status: '404 Not Found'
+   >> + Status: `404 Not Found`
    >> +  ```json
 >   >    "User not found!"
 
 >- **Hata Durumu (Yanlış ID tipi)**
 >
-   >> + Status: '400 Bad Request'
+   >> + Status: `400 Bad Request`
    >> +  ```json
 >   >    "There is no such user has this id!"
+
+### 2. Not İşlemleri (NoteController)
+
+#### Not Ekleme
+
+- **URL:** `/notes`
+- **Method:** `POST`
+- **Açıklama:** Yeni bir not ekler.
+
+- **Request Body:** `<NoteDTO>`
+
+- **Örnek İstek:**
+  ```bash
+  curl -X POST http://localhost:8080/notes -H "Content-Type: application/json" -d '{"title":"Not Başlığı", "content":"Markdown içeriği burada yer alacak.", "userId":1}'
+  ```
+>- **Başarılı Yanıt:**
+>   
+   >> + Status: `200 OK`
+   >> +  Body:
+   >> +   ```json
+>   >     {
+>   >     "username" : "ID'si 1 olan user'ın username'i",
+>   >     "title" : "Not Başlığı",
+>   >     "createdAt" : "2024-08-30T19:34:51.3570971",
+>   >     "updatedAt" : "2024-08-30T19:34:51.3570971"
+>   >     }
+
+>- **Hata Durumu:**
+>
+   >> + Status: `500 Internal Server Error`
+   >> + Body: 
+   >> + ```json
+>   >   {
+>   >   "timestamp" : "2024-08-30T16:39:07.205+00:00",
+>   >   "status" : 500,
+>   >   "error" : "Internal Server Error",
+>   >   "path" : "/notes"
+>   >   }

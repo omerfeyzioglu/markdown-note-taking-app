@@ -414,3 +414,21 @@ curl -X DELETE http://localhost:8080/notes/1
 >   >    }
 
 ### File İşlemleri ([FileController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/FileController.java))
+
+#### Dosya Yükleme
+
+- **URL:** `/files`
+- **Method:** `POST`
+- **İstek Parametreleri:`file` `filePath` `noteId`
+- **Açıklama:** Bir dosyanın belirtilen bir yola ve not ID'sine göre yüklenmesini sağlar.
+- **Örnek İstek:**
+ ```bash
+ curl -X POST http://localhost:8080/files -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/toplantı.txt" -F "filePath=/desired/file/path/toplantı.txt" -F "noteId=14"
+ ```
+
+>- **Başarılı Yanıt:** 
+>   
+   >> + Status: `200 OK`
+   >> +  Body: `Html içeriği`
+   >> +   ```json
+>   >     <p>Markdown işaretleme dilinde içerik</p>

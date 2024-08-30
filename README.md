@@ -436,3 +436,9 @@ curl -X DELETE http://localhost:8080/notes/1
 >   >      "filePath" : "path/to/your/toplantı.txt",
 >   >      "noteId" : 14
 >   >     }
+
+>- **Hata Durumu**
+>
+   >> + Status: `415 Unsupported Media Type`
+   >> +  ```json
+>   >    ""

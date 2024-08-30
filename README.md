@@ -419,16 +419,20 @@ curl -X DELETE http://localhost:8080/notes/1
 
 - **URL:** `/files`
 - **Method:** `POST`
-- **İstek Parametreleri:**`file` `filePath` `noteId`
+- **İstek Parametreleri:** `file` `filePath` `noteId`
 - **Açıklama:** Bir dosyanın belirtilen bir yola ve not ID'sine göre yüklenmesini sağlar.
 - **Örnek İstek:**
  ```bash
- curl -X POST http://localhost:8080/files -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/toplantı.txt" -F "filePath=/desired/file/path/toplantı.txt" -F "noteId=14"
+ curl -X POST http://localhost:8080/files -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/toplantı.txt" -F "filePath=path/to/your/toplantı.txt" -F "noteId=14"
  ```
 
 >- **Başarılı Yanıt:** 
 >   
    >> + Status: `200 OK`
-   >> +  Body: `Html içeriği`
+   >> +  Body: `FileDTO`
    >> +   ```json
->   >     <p>Markdown işaretleme dilinde içerik</p>
+>   >     {
+  "fileName" : "toplantı.txt",
+  "filePath" : "path/to/your/toplantı.txt",
+  "noteId" : 14
+}

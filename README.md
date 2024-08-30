@@ -108,7 +108,7 @@ Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmakt
 
 - **URL:** `/user/{id}`
 - **Method:** `GET`
-- **URL Parametresi:'id'
+- **URL Parametresi:**'id'
 - **Açıklama:** ID'ye göre bir kullanıcı getirir.
 - **Örnek İstek:**
  ```bash
@@ -129,7 +129,7 @@ Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmakt
 
 - **URL:** `/user/{id}`
 - **Method:** `DELETE`
-- **URL Parametresi:'id'
+- **URL Parametresi:**'id'
 - **Açıklama:** ID'ye göre bir kullanıcı siler.
 - **URL Parametresi:'id'
 - **Örnek İstek:**
@@ -198,7 +198,7 @@ curl -X DELETE http://localhost:8080/user/1
 
 - **URL:** `/notes/{id}`
 - **Method:** `GET`
-- **URL Parametresi:'id'
+- **URL Parametresi:**'id'
 - **Açıklama:** ID'ye göre bir kullanıcı getirir.
 - **Örnek İstek:**
  ```bash
@@ -266,7 +266,7 @@ curl -X DELETE http://localhost:8080/user/1
 
 - **URL:** `/notes/user/{userId}`
 - **Method:** `GET`
-- **URL Parametresi:'userId'
+- **URL Parametresi:**'userId'
 - **Açıklama:** ID'ye göre bir kullanıcı getirir.
 - **Örnek İstek:**
  ```bash
@@ -336,7 +336,7 @@ curl -X DELETE http://localhost:8080/user/1
 
 - **URL:** `/notes/{id}`
 - **Method:** `DELETE`
-- **URL Parametresi:'id'
+- **URL Parametresi:**'id'
 - **Açıklama:** ID'ye göre bir not siler.
 - **URL Parametresi:'id'
 - **Örnek İstek:**
@@ -371,7 +371,7 @@ curl -X DELETE http://localhost:8080/notes/1
 
 - **URL:** `/notes/content/{id}`
 - **Method:** `GET`
-- **URL Parametresi:'id'
+- **URL Parametresi:**'id'
 - **Açıklama:** Notun markdown dilinde ki içeriğini Html'e çevirir ve döndürür.
 - **Örnek İstek:**
  ```bash
@@ -419,7 +419,7 @@ curl -X DELETE http://localhost:8080/notes/1
 
 - **URL:** `/files`
 - **Method:** `POST`
-- **İstek Parametreleri:`file` `filePath` `noteId`
+- **İstek Parametreleri:**`file` `filePath` `noteId`
 - **Açıklama:** Bir dosyanın belirtilen bir yola ve not ID'sine göre yüklenmesini sağlar.
 - **Örnek İstek:**
  ```bash

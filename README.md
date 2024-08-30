@@ -383,6 +383,32 @@ curl -X DELETE http://localhost:8080/notes/1
    >> + Status: `200 OK`
    >> +  Body: `Html içeriği`
    >> +   ```json
->   >   <p>Markdown content goes here.</p>
+>   >     <p>Markdown işaretleme dilinde içerik</p>
 
+>- **Hata Durumu (Not İçeriği Boş Olma Durumu)**
+>
+   >> + Status: `200 OK`
+   >> +  ```json
+>   >    ""
 
+>- **Hata Durumu (Not Olmama Durumu)**
+>
+   >> + Status: `500 Internal Server Error`
+   >> +  ```json
+>   >    {
+>   >      "timestamp" : "2024-08-30T22:54:25.807+00:00",
+>   >    "status" : 500,
+>   >    "error" : "Internal Server Error",
+>   >    "path" : "/notes/content/130"
+>   >    } 
+
+>- **Hata Durumu (Yanlış ID tipi)**
+>
+   >> + Status: `400 Bad Request`
+   >> +  ```json
+>   >    {
+>   >     "timestamp" : "2024-08-30T22:44:10.670+00:00",
+>   >    "status" : 400,
+>   >    "error" : "Bad Request",
+>   >    "path" : "/notes/content/1a"
+>   >    }

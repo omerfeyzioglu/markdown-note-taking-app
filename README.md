@@ -262,4 +262,55 @@ curl -X DELETE http://localhost:8080/user/1
 >   >    "path" : "/notes/1a"
 >   >    }
 
+#### Belirli Bir Kullanıcının Notlarını Getirme
+
+- **URL:** `/notes/user/{userId}`
+- **Method:** `GET`
+- **URL Parametresi:'userId'
+- **Açıklama:** ID'ye göre bir kullanıcı getirir.
+- **Örnek İstek:**
+ ```bash
+ curl -X GET "http://localhost:8080/notes/user/1"
+ ```
+>- **Başarılı Yanıt:** (Notun içerisine file eklendiği durum.)
+>
+   >> + Status: `200 OK`
+   >> + Body: `<List<Note>>`
+   >> +  ```json
+>   >     [ {
+>   >     "id" : 9,
+>   >     "title" : "routine",
+>   >     "content" : "Markdown note 1",
+>   >    "createdAt" : "2024-08-28T17:09:39.106826",
+>   >     "updatedAt" : "2024-08-28T17:38:52.354705",
+>   >    "file" : {
+>   >      "id" : 14,
+>   >     "fileName" : "dailytasks.txt",
+>   >     "filePath" : "C:\\..\\dailytasks.txt",
+>   >        "fileType" : "text/plain",
+>   >        "uploadedAt" : "2024-08-28T17:38:52.286481"
+>   >      }
+>   >    },
+>   >    {
+>   >      "id" : 13,
+>   >      "title" : "meeting",
+>   >    "content" : "Markdown note 2",
+>   >      "createdAt" : "2024-08-29T19:44:15.221622",
+>   >    "updatedAt" : "2024-08-29T19:44:15.221622",
+>   >    "file" : null
+>   >    },
+>   >    {
+>   >      "id" : 10,
+>   >     "title" : "project",
+>   >    "content" : "Markdown note 3",
+>   >     "createdAt" : "2024-08-28T17:38:52.343281",
+>   >     "updatedAt" : "2024-08-29T19:44:15.234142",
+>   >     "file" : {
+>   >       "id" : 17,
+>   >     "fileName" : "dailytasks.txt",
+>   >     "filePath" : "C:\\..\\codeexample.txt",
+>   >     "fileType" : "text/plain",
+>   >    "uploadedAt" : "2024-08-29T19:44:15.129561"
+>   >      }
+>   >    } ]
 

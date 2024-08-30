@@ -18,6 +18,10 @@ Markdown Note Taking App, kullanıcıların [Markdown](https://www.markdownguide
 - **Markdown İşleme**: [CommonMark](https://commonmark.org/)
 - **Dosya Yükleme**: MultipartFile
 
+## UML Diagram
+
+![Başlıksız Diyagram drawio](https://github.com/user-attachments/assets/81efbd41-64ed-42eb-9776-9f190a7e1cb1)
+
 ## Kurulum
 
 ### Gereksinimler

@@ -366,5 +366,23 @@ curl -X DELETE http://localhost:8080/notes/1
 >   >    "error" : "Bad Request",
 >   >    "path" : "/notes/1a"
 >   >    }
+   
+#### Belirli Notun Contentini Html Olarak Alma
+
+- **URL:** `/notes/content/{id}`
+- **Method:** `GET`
+- **URL Parametresi:'id'
+- **Açıklama:** Notun markdown dilinde ki içeriğini Html'e çevirir ve döndürür.
+- **Örnek İstek:**
+ ```bash
+ curl -X GET http://localhost:8080/notes/content/1
+ ```
+
+>- **Başarılı Yanıt:** 
+>   
+   >> + Status: `200 OK`
+   >> +  Body: `Html içeriği`
+   >> +   ```json
+>   >   <p>Markdown content goes here.</p>
 
 

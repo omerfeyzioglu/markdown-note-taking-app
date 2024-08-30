@@ -221,9 +221,9 @@ curl -X DELETE http://localhost:8080/user/1
 
 >- **Başarılı Yanıt:** (Notun içerisine file eklendiği durum.)
 >
-    >> + Status: `200 OK`
-    >> + Body: `<Note>`
-    >> +  ```json
+   >> + Status: `200 OK`
+   >> + Body: `<Note>`
+   >> +  ```json
 >   >     {
 >   >     "id" : 1,
 >   >     "title" : "Not Başlığı",

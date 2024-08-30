@@ -427,12 +427,12 @@ curl -X DELETE http://localhost:8080/notes/1
  ```
 
 >- **Başarılı Yanıt:** 
->   
+>   txt veya word dosyası kullanılmak zorunda
    >> + Status: `200 OK`
-   >> +  Body: `FileDTO`
+   >> +  Body: 'FileDTO'
    >> +   ```json
 >   >     {
-  "fileName" : "toplantı.txt",
-  "filePath" : "path/to/your/toplantı.txt",
-  "noteId" : 14
-}
+>   >      "fileName" : "toplantı.txt",
+>   >      "filePath" : "path/to/your/toplantı.txt",
+>   >      "noteId" : 14
+>   >     }

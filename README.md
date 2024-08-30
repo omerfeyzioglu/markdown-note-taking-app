@@ -319,7 +319,7 @@ curl -X DELETE http://localhost:8080/user/1
    >> + Status: `200 OK`
    >> + Body: 
    >> +  ```json
->   >   []
+>   >    []
 
 >- **Hata Durumu (Yanlış ID tipi)**
 >

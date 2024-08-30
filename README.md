@@ -331,3 +331,40 @@ curl -X DELETE http://localhost:8080/user/1
 >   >    "error" : "Bad Request",
 >   >    "path" : "/notes/user/1a"
 >   >    }
+
+#### Not Silme
+
+- **URL:** `/notes/{id}`
+- **Method:** `DELETE`
+- **URL Parametresi:'id'
+- **Açıklama:** ID'ye göre bir not siler.
+- **URL Parametresi:'id'
+- **Örnek İstek:**
+ ```bash
+curl -X DELETE http://localhost:8080/notes/1
+ ```
+
+>- **Başarılı Yanıt:**
+>   
+   >> + Status: `200 OK`
+   >> +   ```json
+>   >     "Note deleted"
+
+>- **Hata Durumu (Not Bulunamadı)**
+>
+   >> + Status: `404 Not Found`
+   >> +  ```json
+>   >    "Note not found"
+
+>- **Hata Durumu (Yanlış ID tipi)**
+>
+   >> + Status: `400 Bad Request`
+   >> +  ```json
+>   >    {
+>   >     "timestamp" : "2024-08-30T22:44:10.670+00:00",
+>   >    "status" : 400,
+>   >    "error" : "Bad Request",
+>   >    "path" : "/notes/1a"
+>   >    }
+
+

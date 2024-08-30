@@ -193,3 +193,30 @@ curl -X DELETE http://localhost:8080/user/1
 >   >   "error" : "Internal Server Error",
 >   >   "path" : "/notes"
 >   >   }
+
+#### Not Getirme
+
+- **URL:** `/notes/{id}`
+- **Method:** `GET`
+- **URL Parametresi:'id'
+- **Açıklama:** ID'ye göre bir kullanıcı getirir.
+- **Örnek İstek:**
+ ```bash
+ curl -X GET "http://localhost:8080/notes/1"
+ ```
+  
+>- **Başarılı Yanıt:**
+>   
+   >> + Status: `200 OK`
+   >> +  Body: `<Note>`
+>   > +  Notun içerisine file eklenmemişse
+   >> +   ```json
+>   >    {
+  "id" : 1,
+  "title" : "Not Başlığı",
+  "content" : "Markdown içeriği burada yer alacak.",
+  "createdAt" : "2024-08-29T20:22:52.663821",
+  "updatedAt" : "2024-08-29T20:22:52.663821",
+  "file" : null
+}
+

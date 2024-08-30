@@ -420,14 +420,14 @@ curl -X DELETE http://localhost:8080/notes/1
 - **URL:** `/files`
 - **Method:** `POST`
 - **İstek Parametreleri:** `file` `filePath` `noteId`
-- **Açıklama:** Bir dosyanın belirtilen bir yola ve not ID'sine göre yüklenmesini sağlar.
+- **Açıklama:** Bir dosyanın belirtilen bir yola ve not ID'sine göre yüklenmesini sağlar.txt veya word dosyası kullanılmak zorunda
 - **Örnek İstek:**
  ```bash
  curl -X POST http://localhost:8080/files -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/toplantı.txt" -F "filePath=path/to/your/toplantı.txt" -F "noteId=14"
  ```
 
 >- **Başarılı Yanıt:** 
->   txt veya word dosyası kullanılmak zorunda
+>   
    >> + Status: `200 OK`
    >> +  Body: 'FileDTO'
    >> +   ```json

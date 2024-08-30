@@ -224,18 +224,18 @@ curl -X DELETE http://localhost:8080/user/1
     >> + Status: `200 OK`
     >> + Body: `<Note>`
     >> +  ```json
->   >      {
+>   >     {
 >   >     "id" : 1,
 >   >     "title" : "Not Başlığı",
 >   >     "content" : "Markdown içeriği burada yer alacak.",
 >   >     "createdAt" : "2024-08-29T20:22:52.663821",
 >   >     "updatedAt" : "2024-08-29T20:22:52.663821",
 >   >     "file" : {
->   >    "id" : 1,
->   >    "fileName" : "dailytasks.txt",
->   >    "filePath" : "C:\\..\\dailytasks.txt",
->   >    "fileType" : "text/plain",
+>   >      "id" : 1,
+>   >      "fileName" : "dailytasks.txt",
+>   >      "filePath" : "C:\\..\\dailytasks.txt",
+>   >      "fileType" : "text/plain",
 >   >    "uploadedAt" : "2024-08-29T20:22:52.649713"
->   >             }
+>   >              }
 >   >     }
 

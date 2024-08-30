@@ -485,3 +485,44 @@ curl -X DELETE http://localhost:8080/notes/1
 >   >    "error" : "Bad Request",
 >   >    "path" : "/files/1a"
 >   >    }
+
+#### Dosya Silme
+
+- **URL:** `/files/{id}`
+- **Method:** `DELETE`
+- **URL Parametresi:**'id'
+- **Açıklama:** ID'ye göre ilgil dosyayı siler.
+- **URL Parametresi:'id'
+- **Örnek İstek:**
+ ```bash
+curl -X DELETE http://localhost:8080/files/1
+ ```
+
+>- **Başarılı Yanıt:**
+>   
+   >> + Status: `200 OK`
+   >> +   ```json
+>   >     "File successfully  deleted"
+
+>- **Hata Durumu (Dosya Olmama Durumu)**
+>
+   >> + Status: `500 Internal Server Error`
+   >> +  ```json
+>   >    {
+>   >      "timestamp" : "2024-08-30T22:54:25.807+00:00",
+>   >    "status" : 500,
+>   >    "error" : "Internal Server Error",
+>   >    "path" : "/files/230"
+>   >    } 
+
+>- **Hata Durumu (Yanlış ID tipi)**
+>
+   >> + Status: `400 Bad Request`
+   >> +  ```json
+>   >    {
+>   >     "timestamp" : "2024-08-30T22:44:10.670+00:00",
+>   >    "status" : 400,
+>   >    "error" : "Bad Request",
+>   >    "path" : "/files/1a"
+>   >    }
+

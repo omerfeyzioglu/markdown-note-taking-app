@@ -314,3 +314,20 @@ curl -X DELETE http://localhost:8080/user/1
 >   >      }
 >   >    } ]
 
+>- **Hata Durumu (Not Bulunamadı)**
+>
+   >> + Status: `200 OK`
+   >> + Body: 
+   >> +  ```json
+>   >   []
+
+>- **Hata Durumu (Yanlış ID tipi)**
+>
+   >> + Status: `400 Bad Request`
+   >> +  ```json
+>   >    {
+>   >    "timestamp" : "2024-08-30T22:09:25.017+00:00",
+>   >    "status" : 400,
+>   >    "error" : "Bad Request",
+>   >    "path" : "/notes/user/1a"
+>   >    }

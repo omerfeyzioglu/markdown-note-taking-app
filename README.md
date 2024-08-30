@@ -412,3 +412,5 @@ curl -X DELETE http://localhost:8080/notes/1
 >   >    "error" : "Bad Request",
 >   >    "path" : "/notes/content/1a"
 >   >    }
+
+### File İşlemleri ([FileController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/FileController.java))

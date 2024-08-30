@@ -13,18 +13,18 @@ Markdown Note Taking App, kullanıcıların [Markdown](https://www.markdownguide
 
 ## Teknolojiler
 
-- **Backend**: Spring Boot
-- **Veritabanı**: PostgreSQL
-- **Markdown İşleme**: CommonMark
+- **Backend**: [Spring Boot](https://spring.io/projects/spring-boot/)
+- **Veritabanı**: [PostgreSQL](https://www.postgresql.org/)
+- **Markdown İşleme**: [CommonMark](https://commonmark.org/)
 - **Dosya Yükleme**: MultipartFile
 
 ## Kurulum
 
 ### Gereksinimler
 
-- JDK 17 veya üstü
+- [JDK 17](https://www.oracle.com/java/technologies/downloads/#java17) veya [üstü](https://www.oracle.com/java/technologies/downloads/#java22)
 - PostgreSQL
-- Maven
+- [Maven](https://maven.apache.org/)
 
 ### Adımlar
 

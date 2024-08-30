@@ -156,7 +156,7 @@ curl -X DELETE http://localhost:8080/user/1
    >> +  ```json
 >   >    "There is no such user has this id!"
 
-### 2. Not İşlemleri (NoteController)
+### 2. Not İşlemleri ([NoteController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/NoteController.java))
 
 #### Not Ekleme
 

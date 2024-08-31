@@ -76,7 +76,13 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public String deleteUser(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return "User deleted!";
+        } else {
+            throw new RuntimeException("User not found!");
+        }
     }
+
 }

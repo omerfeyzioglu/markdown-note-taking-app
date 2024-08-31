@@ -405,4 +405,115 @@ curl -X DELETE http://localhost:8080/notes/1
 >   >    "status" : 500,
 >   >    "error" : "Internal Server Error",
 >   >    "path" : "/notes/content/130"
+>   >    }
+
+### File Operations ([FileController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/FileController.java))
+
+#### File Upload
+
+- **URL:** `/files`
+- **Method:** `POST`
+- **Request Parameters:** `file` `filePath` `noteId`
+- **Description:** Allows uploading a file to a specified path and note ID. Only `txt` or `word` files must be used.
+- **Example Request:**
+ ```bash
+ curl -X POST http://localhost:8080/files -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/meeting.txt" -F "filePath=path/to/your/meeting.txt" -F "noteId=14"
+ ```
+>- **Successful Response:** 
+>   
+   >> + Status: `200 OK`
+   >> +  Body: 'FileDTO'
+   >> +   ```json
+>   >     {
+>   >      "fileName" : "meeting.txt",
+>   >      "filePath" : "path/to/your/meeting.txt",
+>   >      "noteId" : 14
+>   >     }
+
+>- **Error State**
 >
+   >> + Status: `415 Unsupported Media Type`
+   >> +  ```json
+>   >    ""
+
+#### Get File
+
+- **URL:** `/files/{id}`
+- **Method:** `GET`
+- **URL Parameter:** 'id'
+- **Description:** Retrieves the relevant file according to the ID.
+- **Example Request:**
+ ```bash
+ curl -X GET "http://localhost:8080/files/1"
+ ```
+>- **Successful Response:** 
+>
+   >> + Status: `200 OK`
+   >> + Body: `<FileDTO>`
+   >> +  ```json
+>   >     {
+>   >     "fileName" : "meeting.txt",
+>   >    "filePath" : "path/to/your/meeting.txt",
+>   >    "noteId" : 14
+>   >    }
+
+>- **Error State (File Not Found)**
+>
+   >> + Status: `500 Internal Server Error`
+   >> +  ```json
+>   >    {
+>   >      "timestamp" : "2024-08-30T22:54:25.807+00:00",
+>   >    "status" : 500,
+>   >    "error" : "Internal Server Error",
+>   >    "path" : "/files/230"
+>   >    } 
+
+>- **Error State (Wrong ID type)**
+>
+   >> + Status: `400 Bad Request`
+   >> +  ```json
+>   >    {
+>   >     "timestamp" : "2024-08-30T22:44:10.670+00:00",
+>   >    "status" : 400,
+>   >    "error" : "Bad Request",
+>   >    "path" : "/files/1a"
+>   >    }
+
+#### Delete File
+
+- **URL:** `/files/{id}`
+- **Method:** `DELETE`
+- **URL Parameter:** 'id'
+- **Description:** Deletes the relevant file according to the ID.
+- **Example Request:**
+ ```bash
+curl -X DELETE http://localhost:8080/files/1
+ ```
+
+>- **Successful Response:**
+>   
+   >> + Status: `200 OK`
+   >> +   ```json
+>   >     "File successfully deleted"
+
+>- **Error State (File Not Found)**
+>
+   >> + Status: `500 Internal Server Error`
+   >> +  ```json
+>   >    {
+>   >      "timestamp" : "2024-08-30T22:54:25.807+00:00",
+>   >    "status" : 500,
+>   >    "error" : "Internal Server Error",
+>   >    "path" : "/files/230"
+>   >    } 
+
+>- **Error State (Wrong ID type)**
+>
+   >> + Status: `400 Bad Request`
+   >> +  ```json
+>   >    {
+>   >     "timestamp" : "2024-08-30T22:44:10.670+00:00",
+>   >    "status" : 400,
+>   >    "error" : "Bad Request",
+>   >    "path" : "/files/1a"
+>   >    }

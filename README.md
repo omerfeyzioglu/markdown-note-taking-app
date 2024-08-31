@@ -1,77 +1,80 @@
 # Markdown Note Taking App
 
-## Açıklama
+## Description
 
-Markdown Note Taking App, kullanıcıların [Markdown](https://www.markdownguide.org/basic-syntax/) formatında notlar oluşturmasını ve bu notları HTML formatına dönüştürmesini sağlar. Uygulama ayrıca dosya yükleme ve notlara dosya ekleme gibi özellikler sunar. Bu uygulama, Spring Boot kullanılarak geliştirilmiştir ve PostgreSQL veritabanı ile entegre edilmiştir.
+Markdown Note Taking App allows users to create notes in [Markdown](https://www.markdownguide.org/basic-syntax/) format and convert these notes to HTML format. The application also offers features such as file uploading and attaching files to notes. This application is developed using Spring Boot and integrated with PostgreSQL database.
 
-## Özellikler
+## Features
 
-- **Kullanıcı Yönetimi**: Kullanıcılar oluşturulabilir, görüntülenebilir ve silinebilir.
-- **Not Yönetimi**: Notlar oluşturulabilir, görüntülenebilir ve silinebilir.
-- **Markdown'dan HTML'ye Dönüştürme**: Markdown içeriğini HTML'ye dönüştürür.
-- **Dosya Yükleme ve Yönetimi**: Notlara dosya ekleme ve dosyaları yönetme.
+- **User Management**: Users can be created, viewed, and deleted.
+- **Note Management**: Notes can be created, viewed, and deleted.
+- **Markdown to HTML Conversion**: Converts Markdown content to HTML.
+- **File Upload and Management**: Add files to notes and manage files.
 
-## Teknolojiler
+## Technologies
 
 - **Backend**: [Spring Boot](https://spring.io/projects/spring-boot/)
-- **Veritabanı**: [PostgreSQL](https://www.postgresql.org/)
-- **Markdown İşleme**: [CommonMark](https://commonmark.org/)
-- **Dosya Yükleme**: MultipartFile
+- **Database**: [PostgreSQL](https://www.postgresql.org/)
+- **Markdown Processing**: [CommonMark](https://commonmark.org/)
+- **File Upload**: MultipartFile
 
 ## UML Diagram
 
-![Başlıksız Diyagram drawio](https://github.com/user-attachments/assets/81efbd41-64ed-42eb-9776-9f190a7e1cb1)
+![Untitled Diagram drawio](https://github.com/user-attachments/assets/81efbd41-64ed-42eb-9776-9f190a7e1cb1)
 
-## Kurulum
+## Installation
 
-### Gereksinimler
+### Requirements
 
-- [JDK 17](https://www.oracle.com/java/technologies/downloads/#java17) veya [üstü](https://www.oracle.com/java/technologies/downloads/#java22)
+- [JDK 17](https://www.oracle.com/java/technologies/downloads/#java17) or [higher](https://www.oracle.com/java/technologies/downloads/#java22)
 - PostgreSQL
 - [Maven](https://maven.apache.org/)
 
-### Adımlar
+### Steps
 
-1. **Projeyi Klonlayın**:
+1. **Clone the Project**:
 
    ```bash
-   git clone https://github.com/kullanici_adiniz/markdown-note-taking-app.git
+   git clone https://github.com/your_username/markdown-note-taking-app.git
    cd markdown-note-taking-app
+   ```
 
-2. **Veritabanı Ayarları**:
+2. **Database Settings**:
 
-PostgreSQL veritabanınızı oluşturun ve src/main/resources/application.properties dosyasını uygun şekilde düzenleyin:
+Create your PostgreSQL database and edit the src/main/resources/application.properties file accordingly:
 
   ```bash
   spring.datasource.url=jdbc:postgresql://localhost:5432/markdown_app
   spring.datasource.username=postgres
   spring.datasource.password=your_password
   ```
-3. **Projeyi Yapılandırın ve Çalıştırın**:
+
+3. **Configure and Run the Project**:
 
   ```bash
   mvn clean install
   mvn spring-boot:run
- ```
-## API Kullanımı
+  ```
 
-Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmaktadır.
+## API Usage
 
-### 1. Kullanıcı İşlemleri ([UserController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/UserController.java))
+This section explains how to use the project's API endpoints.
 
-#### Kullanıcı Ekleme
+### 1. User Operations ([UserController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/UserController.java))
+
+#### Add User
 
 - **URL:** `/user`
 - **Method:** `POST`
-- **Açıklama:** Yeni bir kullanıcı oluşturur.
+- **Description:** Creates a new user.
 
 - **Request Body:** `<UserDTO>`
 
-- **Örnek İstek:**
+- **Example Request:**
   ```bash
   curl -X POST http://localhost:8080/user -H "Content-Type: application/json" -d "{\"username\":\"OmerF\", \"email\":\"omer@example.com\", \"password\":\"your_password\"}"
   ```
->- **Başarılı Yanıt:**
+>- **Successful Response:**
 >   
    >> + Status: `200 OK`
    >> +  Body:
@@ -82,17 +85,17 @@ Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmakt
 >   >     "password": "your_password"
 >   >      }
           
-#### Kullanıcıları Getirme
+#### Get Users
 
 - **URL:** `/user`
 - **Method:** `GET`
-- **Açıklama:** Sistemde kayıtlı tüm kullanıcıları getirir.
-- **Örnek İstek:**
+- **Description:** Retrieves all users registered in the system.
+- **Example Request:**
  ```bash
  curl -X GET "http://localhost:8080/user"
  ```
   
->- **Başarılı Yanıt:**
+>- **Successful Response:**
 >   
    >> + Status: `200 OK`
    >> +  Body: `<List<ResponseUserDTO>>`
@@ -108,18 +111,18 @@ Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmakt
 >   >      } 
 >   >     ]
 
-#### Belirli Kullanıcı Getirme
+#### Get Specific User
 
 - **URL:** `/user/{id}`
 - **Method:** `GET`
-- **URL Parametresi:**'id'
-- **Açıklama:** ID'ye göre bir kullanıcı getirir.
-- **Örnek İstek:**
+- **URL Parameter:** 'id'
+- **Description:** Retrieves a user by ID.
+- **Example Request:**
  ```bash
  curl -X GET "http://localhost:8080/user/1"
  ```
   
->- **Başarılı Yanıt:**
+>- **Successful Response:**
 >   
    >> + Status: `200 OK`
    >> +  Body: `<ResponseUserDTO>`
@@ -129,64 +132,63 @@ Bu bölümde, projenin API endpoint'lerinin nasıl kullanılacağı anlatılmakt
 >   >     "createdAt": "YYYY-MM-DDTHH:MM:SSZ"
 >   >      }
 
-#### Kullanıcı Silme
+#### Delete User
 
 - **URL:** `/user/{id}`
 - **Method:** `DELETE`
-- **URL Parametresi:**'id'
-- **Açıklama:** ID'ye göre bir kullanıcı siler.
-- **URL Parametresi:'id'
-- **Örnek İstek:**
+- **URL Parameter:** 'id'
+- **Description:** Deletes a user by ID.
+- **Example Request:**
  ```bash
 curl -X DELETE http://localhost:8080/user/1
  ```
   
->- **Başarılı Yanıt:**
+>- **Successful Response:**
 >   
    >> + Status: `200 OK`
    >> +  Body: `<ResponseUserDTO>`
    >> +   ```json
 >   >     "User deleted!"
 
->- **Hata Durumu (Kullanıcı Bulunamadı)**
+>- **Error State (User Not Found)**
 >
    >> + Status: `404 Not Found`
    >> +  ```json
 >   >    "User not found!"
 
->- **Hata Durumu (Yanlış ID tipi)**
+>- **Error State (Wrong ID type)**
 >
    >> + Status: `400 Bad Request`
    >> +  ```json
 >   >    "There is no such user has this id!"
 
-### 2. Not İşlemleri ([NoteController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/NoteController.java))
+### 2. Note Operations ([NoteController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/NoteController.java))
 
-#### Not Ekleme
+#### Add Note
 
 - **URL:** `/notes`
 - **Method:** `POST`
-- **Açıklama:** Yeni bir not ekler.
+- **Description:** Adds a new note.
 
 - **Request Body:** `<NoteDTO>`
 
-- **Örnek İstek:**
+- **Example Request:**
   ```bash
-  curl -X POST http://localhost:8080/notes -H "Content-Type: application/json" -d '{"title":"Not Başlığı", "content":"Markdown içeriği burada yer alacak.", "userId":1}'
+  curl -X POST http://localhost:8080/notes -H "Content-Type: application/json" -d '{"title":"Note Title", "content":"Markdown content will be here.", "userId":1}'
   ```
->- **Başarılı Yanıt:**
+>- **Successful Response:**
 >   
    >> + Status: `200 OK`
    >> +  Body:
    >> +   ```json
 >   >     {
->   >     "username" : "ID'si 1 olan user'ın username'i",
->   >     "title" : "Not Başlığı",
+>   >     "username" : "Username of the user with ID 1",
+>   >     "title" : "Note Title",
 >   >     "createdAt" : "2024-08-30T19:34:51.3570971",
 >   >     "updatedAt" : "2024-08-30T19:34:51.3570971"
 >   >     }
 
->- **Hata Durumu:**
+>- **Error State:**
 >
    >> + Status: `500 Internal Server Error`
    >> + Body: 
@@ -198,40 +200,40 @@ curl -X DELETE http://localhost:8080/user/1
 >   >   "path" : "/notes"
 >   >   }
 
-#### Not Getirme
+#### Get Note
 
 - **URL:** `/notes/{id}`
 - **Method:** `GET`
-- **URL Parametresi:**'id'
-- **Açıklama:** ID'ye göre bir kullanıcı getirir.
-- **Örnek İstek:**
+- **URL Parameter:** 'id'
+- **Description:** Retrieves a note by ID.
+- **Example Request:**
  ```bash
  curl -X GET "http://localhost:8080/notes/1"
  ```
   
->- **Başarılı Yanıt:** (Notun içerisine file eklenmediği durum.)
+>- **Successful Response:** (When no file is attached to the note.)
 >   
    >> + Status: `200 OK`
    >> +  Body: `<Note>`
    >> +   ```json
 >   >     {
 >   >     "id" : 1,
->   >     "title" : "Not Başlığı",
->   >     "content" : "Markdown içeriği burada yer alacak.",
+>   >     "title" : "Note Title",
+>   >     "content" : "Markdown content will be here.",
 >   >     "createdAt" : "2024-08-29T20:22:52.663821",
 >   >     "updatedAt" : "2024-08-29T20:22:52.663821",
 >   >     "file" : null
 >   >     }
 
->- **Başarılı Yanıt:** (Notun içerisine file eklendiği durum.)
+>- **Successful Response:** (When a file is attached to the note.)
 >
    >> + Status: `200 OK`
    >> + Body: `<Note>`
    >> +  ```json
 >   >     {
 >   >     "id" : 1,
->   >     "title" : "Not Başlığı",
->   >     "content" : "Markdown içeriği burada yer alacak.",
+>   >     "title" : "Note Title",
+>   >     "content" : "Markdown content will be here.",
 >   >     "createdAt" : "2024-08-29T20:22:52.663821",
 >   >     "updatedAt" : "2024-08-29T20:22:52.663821",
 >   >     "file" : {
@@ -243,7 +245,7 @@ curl -X DELETE http://localhost:8080/user/1
 >   >              }
 >   >     }
 
->- **Hata Durumu (Not Bulunamadı)**
+>- **Error State (Note Not Found)**
 >
    >> + Status: `404 Not Found`
    >> + Body: 
@@ -255,7 +257,7 @@ curl -X DELETE http://localhost:8080/user/1
 >   >    "path" : "/notes/1"
 >   >    }
 
->- **Hata Durumu (Yanlış ID tipi)**
+>- **Error State (Wrong ID type)**
 >
    >> + Status: `400 Bad Request`
    >> +  ```json
@@ -266,17 +268,17 @@ curl -X DELETE http://localhost:8080/user/1
 >   >    "path" : "/notes/1a"
 >   >    }
 
-#### Belirli Bir Kullanıcının Notlarını Getirme
+#### Get Notes of a Specific User
 
 - **URL:** `/notes/user/{userId}`
 - **Method:** `GET`
-- **URL Parametresi:**'userId'
-- **Açıklama:** ID'ye göre bir kullanıcı getirir.
-- **Örnek İstek:**
+- **URL Parameter:** 'userId'
+- **Description:** Retrieves all notes of a user by user ID.
+- **Example Request:**
  ```bash
  curl -X GET "http://localhost:8080/notes/user/1"
  ```
->- **Başarılı Yanıt:** (Notun içerisine file eklendiği durum.)
+>- **Successful Response:** (When files are attached to notes.)
 >
    >> + Status: `200 OK`
    >> + Body: `<List<Note>>`
@@ -318,14 +320,14 @@ curl -X DELETE http://localhost:8080/user/1
 >   >      }
 >   >    } ]
 
->- **Hata Durumu (Not Bulunamadı)**
+>- **Error State (Note Not Found)**
 >
    >> + Status: `200 OK`
    >> + Body: 
    >> +  ```json
 >   >    []
 
->- **Hata Durumu (Yanlış ID tipi)**
+>- **Error State (Wrong ID type)**
 >
    >> + Status: `400 Bad Request`
    >> +  ```json
@@ -336,31 +338,30 @@ curl -X DELETE http://localhost:8080/user/1
 >   >    "path" : "/notes/user/1a"
 >   >    }
 
-#### Not Silme
+#### Delete Note
 
 - **URL:** `/notes/{id}`
 - **Method:** `DELETE`
-- **URL Parametresi:**'id'
-- **Açıklama:** ID'ye göre bir not siler.
-- **URL Parametresi:'id'
-- **Örnek İstek:**
+- **URL Parameter:** 'id'
+- **Description:** Deletes a note by ID.
+- **Example Request:**
  ```bash
 curl -X DELETE http://localhost:8080/notes/1
  ```
 
->- **Başarılı Yanıt:**
+>- **Successful Response:**
 >   
    >> + Status: `200 OK`
    >> +   ```json
 >   >     "Note deleted"
 
->- **Hata Durumu (Not Bulunamadı)**
+>- **Error State (Note Not Found)**
 >
    >> + Status: `404 Not Found`
    >> +  ```json
 >   >    "Note not found"
 
->- **Hata Durumu (Yanlış ID tipi)**
+>- **Error State (Wrong ID type)**
 >
    >> + Status: `400 Bad Request`
    >> +  ```json
@@ -371,31 +372,31 @@ curl -X DELETE http://localhost:8080/notes/1
 >   >    "path" : "/notes/1a"
 >   >    }
    
-#### Belirli Notun Contentini Html Olarak Alma
+#### Get Note Content as HTML
 
 - **URL:** `/notes/content/{id}`
 - **Method:** `GET`
-- **URL Parametresi:**'id'
-- **Açıklama:** Notun markdown dilinde ki içeriğini Html'e çevirir ve döndürür.
-- **Örnek İstek:**
+- **URL Parameter:** 'id'
+- **Description:** Converts the markdown content of the note to HTML and returns it.
+- **Example Request:**
  ```bash
  curl -X GET http://localhost:8080/notes/content/1
  ```
 
->- **Başarılı Yanıt:** 
+>- **Successful Response:** 
 >   
    >> + Status: `200 OK`
-   >> +  Body: `Html içeriği`
+   >> +  Body: `HTML content`
    >> +   ```json
->   >     <p>Markdown işaretleme dilinde içerik</p>
+>   >     <p>Content in Markdown markup language</p>
 
->- **Hata Durumu (Not İçeriği Boş Olma Durumu)**
+>- **Error State (Empty Note Content)**
 >
    >> + Status: `200 OK`
    >> +  ```json
 >   >    ""
 
->- **Hata Durumu (Not Olmama Durumu)**
+>- **Error State (Note Not Found)**
 >
    >> + Status: `500 Internal Server Error`
    >> +  ```json
@@ -404,129 +405,4 @@ curl -X DELETE http://localhost:8080/notes/1
 >   >    "status" : 500,
 >   >    "error" : "Internal Server Error",
 >   >    "path" : "/notes/content/130"
->   >    } 
-
->- **Hata Durumu (Yanlış ID tipi)**
 >
-   >> + Status: `400 Bad Request`
-   >> +  ```json
->   >    {
->   >     "timestamp" : "2024-08-30T22:44:10.670+00:00",
->   >    "status" : 400,
->   >    "error" : "Bad Request",
->   >    "path" : "/notes/content/1a"
->   >    }
-
-### File İşlemleri ([FileController](https://github.com/omerfeyzioglu/markdown-note-taking-app/blob/main/src/main/java/com/example/demo/controllers/FileController.java))
-
-#### Dosya Yükleme
-
-- **URL:** `/files`
-- **Method:** `POST`
-- **İstek Parametreleri:** `file` `filePath` `noteId`
-- **Açıklama:** Bir dosyanın belirtilen bir yola ve not ID'sine göre yüklenmesini sağlar. `txt` veya `word` dosyası kullanılmak zorunda
-- **Örnek İstek:**
- ```bash
- curl -X POST http://localhost:8080/files -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/toplantı.txt" -F "filePath=path/to/your/toplantı.txt" -F "noteId=14"
- ```
-
->- **Başarılı Yanıt:** 
->   
-   >> + Status: `200 OK`
-   >> +  Body: 'FileDTO'
-   >> +   ```json
->   >     {
->   >      "fileName" : "toplantı.txt",
->   >      "filePath" : "path/to/your/toplantı.txt",
->   >      "noteId" : 14
->   >     }
-
->- **Hata Durumu**
->
-   >> + Status: `415 Unsupported Media Type`
-   >> +  ```json
->   >    ""
-
-#### Dosya Getirme
-
-- **URL:** `/files/{id}`
-- **Method:** `GET`
-- **URL Parametresi:**'id'
-- **Açıklama:** ID'ye göre ilgili dosya getirir.
-- **Örnek İstek:**
- ```bash
- curl -X GET "http://localhost:8080/files/1"
- ```
->- **Başarılı Yanıt:** 
->
-   >> + Status: `200 OK`
-   >> + Body: `<FileDTO>`
-   >> +  ```json
->   >     {
->   >     "fileName" : "toplantı.txt",
->   >    "filePath" : "path/to/your/toplantı.txt",
->   >    "noteId" : 14
->   >    }
-
->- **Hata Durumu (Dosya Olmama Durumu)**
->
-   >> + Status: `500 Internal Server Error`
-   >> +  ```json
->   >    {
->   >      "timestamp" : "2024-08-30T22:54:25.807+00:00",
->   >    "status" : 500,
->   >    "error" : "Internal Server Error",
->   >    "path" : "/files/230"
->   >    } 
-
->- **Hata Durumu (Yanlış ID tipi)**
->
-   >> + Status: `400 Bad Request`
-   >> +  ```json
->   >    {
->   >     "timestamp" : "2024-08-30T22:44:10.670+00:00",
->   >    "status" : 400,
->   >    "error" : "Bad Request",
->   >    "path" : "/files/1a"
->   >    }
-
-#### Dosya Silme
-
-- **URL:** `/files/{id}`
-- **Method:** `DELETE`
-- **URL Parametresi:**'id'
-- **Açıklama:** ID'ye göre ilgil dosyayı siler.
-- **URL Parametresi:'id'
-- **Örnek İstek:**
- ```bash
-curl -X DELETE http://localhost:8080/files/1
- ```
-
->- **Başarılı Yanıt:**
->   
-   >> + Status: `200 OK`
-   >> +   ```json
->   >     "File successfully  deleted"
-
->- **Hata Durumu (Dosya Olmama Durumu)**
->
-   >> + Status: `500 Internal Server Error`
-   >> +  ```json
->   >    {
->   >      "timestamp" : "2024-08-30T22:54:25.807+00:00",
->   >    "status" : 500,
->   >    "error" : "Internal Server Error",
->   >    "path" : "/files/230"
->   >    } 
-
->- **Hata Durumu (Yanlış ID tipi)**
->
-   >> + Status: `400 Bad Request`
-   >> +  ```json
->   >    {
->   >     "timestamp" : "2024-08-30T22:44:10.670+00:00",
->   >    "status" : 400,
->   >    "error" : "Bad Request",
->   >    "path" : "/files/1a"
->   >    }
-

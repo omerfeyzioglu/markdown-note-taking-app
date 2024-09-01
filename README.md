@@ -14,11 +14,19 @@ Markdown Note Taking App allows users to create notes in [Markdown](https://www.
 ## Technologies
 
 - **Backend**: [Spring Boot](https://spring.io/projects/spring-boot/)
+-  For building the RESTful API and handling backend logic.
 - **Database**: [PostgreSQL](https://www.postgresql.org/)
+-  To store and manage data securely and efficiently.
 - **Markdown Processing**: [CommonMark](https://commonmark.org/)
+-  For converting Markdown content into HTML format.
 - **File Upload**: MultipartFile
+-  To handle file uploads in your Spring Boot application.
 - **Object Mapping & Simplification**: [Lombok](https://projectlombok.org/)
+-  To reduce boilerplate code with annotations.
 - **Object-DTO Conversion**: [ModelMapper](https://modelmapper.org/)
+-  For mapping between your entity classes and DTOs efficiently.
+
+
 ## UML Diagram
 
 ![Untitled Diagram drawio](https://github.com/user-attachments/assets/81efbd41-64ed-42eb-9776-9f190a7e1cb1)

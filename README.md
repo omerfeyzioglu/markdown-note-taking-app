@@ -17,8 +17,8 @@ Markdown Note Taking App allows users to create notes in [Markdown](https://www.
 - **Database**: [PostgreSQL](https://www.postgresql.org/)
 - **Markdown Processing**: [CommonMark](https://commonmark.org/)
 - **File Upload**: MultipartFile
-- **Object Mapping & Simplification: [Lombok](https://projectlombok.org/)
-- **Object-DTO Conversion: [ModelMapper](https://modelmapper.org/)
+- **Object Mapping & Simplification**: [Lombok](https://projectlombok.org/)
+- **Object-DTO Conversion**: [ModelMapper](https://modelmapper.org/)
 ## UML Diagram
 
 ![Untitled Diagram drawio](https://github.com/user-attachments/assets/81efbd41-64ed-42eb-9776-9f190a7e1cb1)
